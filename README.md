@@ -90,3 +90,6 @@ Imans-MacBook-Air:disbursement iman$ docker-compose ps
 * [Creating Golang WebServer With Echo](https://www.youtube.com/watch?v=_pww3NJuWnk&list=PLFmONUGpIk0YwlJMZOo21a9Q1juVrk4YY)
 * [RESTFUL Sample](https://github.com/kyawmyintthein/golangRestfulAPISample)
 
+## Insomania (RESTAPI Client) Workspace
+
+If you use Insomnia you can import sample workspace from ```INSOMNIA-WORKSPACE.json```.
