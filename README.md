@@ -67,3 +67,18 @@ This unit test is for testing each endpoint and response. All test file located 
 ```bash
 go test tests/*_test.go
 ```
+
+## Run with Docker
+
+* Install Docker
+* Clone this repo
+* Create another container for Postgre, and put in the same docker network (i.e ```my-shared-network```). You can use my [support container](https://github.com/rimantoro/docker_support_stack)
+* Run ```docker-compose up --build``` on project root, and make sure to check it if its run well with ```docker-compose ps```, you should see like this below
+```bash
+Imans-MacBook-Air:disbursement iman$ docker-compose ps
+       Name                     Command               State           Ports
+------------------------------------------------------------------------------------
+<your_project_folder>_api_1   /bin/sh -c dep ensure && g ...   Up      0.0.0.0:8000->8000/tcp
+```
+* Test with your REST API tools for GET 0.0.0.0:8000/users, and you should see some JSON response.
+* 
