@@ -1,4 +1,4 @@
-# TRYING ECHO
+# SIMPLE REST API WITH ECHO FRAMEWORK
 
 Setup REST API with [Echo Framework](https://echo.labstack.com/guide/migration), Postgre and Messaging.
 
@@ -19,6 +19,7 @@ Below is the packages used by this project
 * Logger :
     - Logrus: https://github.com/sirupsen/logrus
     - Rotator: https://github.com/lestrrat-go/file-rotatelogs
+* Message Queue: TBD
 
 ## Configs
 
