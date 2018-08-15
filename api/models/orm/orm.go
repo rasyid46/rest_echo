@@ -14,8 +14,9 @@ import (
 	"math"
 	"reflect"
 
+	cgorm "rest_echo/db/gorm"
+
 	"github.com/jinzhu/gorm"
-	cgorm "github.com/sepulsa/rest_echo/db/gorm"
 )
 
 type (

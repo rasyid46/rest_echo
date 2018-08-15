@@ -5,8 +5,9 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"rest_echo/router"
+
 	"github.com/gavv/httpexpect"
-	"github.com/sepulsa/rest_echo/router"
 )
 
 func TestGetUsers(t *testing.T) {

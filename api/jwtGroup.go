@@ -1,7 +1,7 @@
 package api
 
 import (
-	"github.com/sepulsa/rest_echo/api/handlers"
+	"rest_echo/api/handlers"
 
 	"github.com/labstack/echo"
 )

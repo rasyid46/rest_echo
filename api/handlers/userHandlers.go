@@ -5,8 +5,9 @@ import (
 	"os"
 	"strconv"
 
+	"rest_echo/api/models"
+
 	"github.com/labstack/echo"
-	"github.com/sepulsa/rest_echo/api/models"
 	log "github.com/sirupsen/logrus"
 	"github.com/thedevsaddam/govalidator"
 )
