@@ -82,4 +82,11 @@ Imans-MacBook-Air:disbursement iman$ docker-compose ps
 <your_project_folder>_api_1   /bin/sh -c dep ensure && g ...   Up      0.0.0.0:8000->8000/tcp
 ```
 * Test with your REST API tools for GET 0.0.0.0:8000/users, and you should see some JSON response.
-* 
+
+
+## References When Building This Project
+
+* [Udemy Go - The Complete Developer's Guide](https://www.udemy.com/go-the-complete-developers-guide/)
+* [Creating Golang WebServer With Echo](https://www.youtube.com/watch?v=_pww3NJuWnk&list=PLFmONUGpIk0YwlJMZOo21a9Q1juVrk4YY)
+* [RESTFUL Sample](https://github.com/kyawmyintthein/golangRestfulAPISample)
+
