@@ -1,8 +1,8 @@
 package router
 
 import (
-	"github.com/sepulsa/rest_echo/api"
-	"github.com/sepulsa/rest_echo/api/middlewares"
+	"rest_echo/api"
+	"rest_echo/api/middlewares"
 
 	"github.com/labstack/echo"
 )

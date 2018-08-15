@@ -3,8 +3,8 @@ package models
 import (
 	"time"
 
-	// "github.com/sepulsa/rest_echo/api/models"
-	"github.com/sepulsa/rest_echo/api/models/orm"
+	// "rest_echo/api/models"
+	"rest_echo/api/models/orm"
 )
 
 type (

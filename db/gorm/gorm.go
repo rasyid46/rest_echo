@@ -4,12 +4,13 @@ import (
 	"fmt"
 	"log"
 
+	"rest_echo/bootstrap"
+
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	_ "github.com/lib/pq"
-	"github.com/sepulsa/rest_echo/bootstrap"
 )
 
 var (

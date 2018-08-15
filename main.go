@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/sepulsa/rest_echo/api/models"
-	"github.com/sepulsa/rest_echo/bootstrap"
-	"github.com/sepulsa/rest_echo/db/gorm"
-	"github.com/sepulsa/rest_echo/router"
+	"rest_echo/api/models"
+	"rest_echo/bootstrap"
+	"rest_echo/db/gorm"
+	"rest_echo/router"
 )
 
 func main() {
