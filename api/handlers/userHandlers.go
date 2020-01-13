@@ -13,6 +13,11 @@ import (
 	"github.com/thedevsaddam/govalidator"
 )
 
+type Credentials struct {
+	Password string `json:"password", db:"password"`
+	Username string `json:"username", db:"username"`
+}
+
 func init() {
 	// Log as JSON instead of the default ASCII formatter.
 	log.SetFormatter(&log.JSONFormatter{})
@@ -94,11 +99,13 @@ func AddUser(c echo.Context) error {
 	if checkEmail.RowsAffected > 0 {
 		return echo.NewHTTPError(http.StatusBadRequest, "email sudah ada")
 	}
+
 	result, err := models.Create(&user)
 	if err != nil {
 		log.Printf("FAILED TO CREATE : %s\n", err)
 		return echo.NewHTTPError(http.StatusBadRequest, "Failed to create new user")
 	}
+	// result := &user
 	return c.JSON(http.StatusCreated, result)
 }
 
@@ -161,4 +168,31 @@ func DeleteUser(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusOK, user)
+}
+func LoginUser(c echo.Context) error {
+	user := models.User{}
+
+	defer c.Request().Body.Close()
+
+	rules := govalidator.MapData{
+		"password": []string{"required"},
+		"email":    []string{"required", "email"},
+	}
+
+	vld := ValidateRequest(c, rules, &user)
+	if vld != nil {
+		return echo.NewHTTPError(http.StatusUnprocessableEntity, vld)
+	}
+	passrequest := user.Password
+	checkEmail := gorm.DBManager().Where("email = ?", user.Email).Find(&user)
+	if checkEmail.RowsAffected > 0 {
+		passDB := user.Password
+		match := models.CheckPasswordHash(passrequest, passDB)
+		if match == false {
+			return echo.NewHTTPError(http.StatusBadRequest, "password salah")
+		}
+		return c.JSON(http.StatusCreated, match)
+	} else {
+		return echo.NewHTTPError(http.StatusBadRequest, "email tidak terdaftar")
+	}
 }

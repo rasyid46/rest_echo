@@ -10,8 +10,8 @@ import (
 )
 
 type JwtClaims struct {
-	Name    string `json:"name"`
-	Role_id string `json:"role_id"`
+	Name   string `json:"name"`
+	Roleid string `json:"role_id"`
 	jwt.StandardClaims
 }
 
