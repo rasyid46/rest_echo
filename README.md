@@ -3,7 +3,7 @@
 Setup REST API with [Echo Framework](https://echo.labstack.com/guide/migration), Postgre and Messaging.
 
 ## Package Dependencies
-
+install go get
 Below is the packages used by this project
 
 * Framework : https://github.com/labstack/echo

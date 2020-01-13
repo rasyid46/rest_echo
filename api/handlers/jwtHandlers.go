@@ -13,7 +13,7 @@ func MainJwt(c echo.Context) error {
 	token := user.(*jwt.Token)
 
 	if claims, ok := token.Claims.(jwt.MapClaims); ok {
-		log.Println("User Name: ", claims["name"], "User ID: ", claims["jti"])
+		log.Println("User Name: ", claims["name"], "User ID: ", claims)
 		return c.String(http.StatusOK, "you are on the top secret jwt page!")
 	}
 

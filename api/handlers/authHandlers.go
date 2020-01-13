@@ -10,7 +10,8 @@ import (
 )
 
 type JwtClaims struct {
-	Name string `json:"name"`
+	Name    string `json:"name"`
+	Role_id string `json:"role_id"`
 	jwt.StandardClaims
 }
 
@@ -19,7 +20,7 @@ func Login(c echo.Context) error {
 	password := c.QueryParam("password")
 
 	// check username and password against DB after hashing the password
-	if username == "jack" && password == "1234" {
+	if username == "jack1" && password == "1234" {
 		cookie := &http.Cookie{}
 
 		// this is the same
@@ -32,7 +33,7 @@ func Login(c echo.Context) error {
 		c.SetCookie(cookie)
 
 		// create jwt token
-		token, err := createJwtToken()
+		token, err := createJwtToken(username)
 		if err != nil {
 			log.Println("Error Creating JWT token", err)
 			return c.String(http.StatusInternalServerError, "something went wrong")
@@ -47,9 +48,9 @@ func Login(c echo.Context) error {
 	return c.String(http.StatusUnauthorized, "Your username or password were wrong")
 }
 
-func createJwtToken() (string, error) {
+func createJwtToken(username string) (string, error) {
 	claims := JwtClaims{
-		"jack",
+		username, "1",
 		jwt.StandardClaims{
 			Id:        "main_user_id",
 			ExpiresAt: time.Now().Add(24 * time.Hour).Unix(),
