@@ -6,6 +6,7 @@ import (
 	"strconv"
 
 	"rest_echo/api/models"
+	"rest_echo/db/gorm"
 
 	"github.com/labstack/echo"
 	log "github.com/sirupsen/logrus"
@@ -89,12 +90,15 @@ func AddUser(c echo.Context) error {
 		return echo.NewHTTPError(http.StatusUnprocessableEntity, vld)
 	}
 
+	checkEmail := gorm.DBManager().Where("email = ?", user.Email).Find(&user)
+	if checkEmail.RowsAffected > 0 {
+		return echo.NewHTTPError(http.StatusBadRequest, "email sudah ada")
+	}
 	result, err := models.Create(&user)
 	if err != nil {
 		log.Printf("FAILED TO CREATE : %s\n", err)
 		return echo.NewHTTPError(http.StatusBadRequest, "Failed to create new user")
 	}
-
 	return c.JSON(http.StatusCreated, result)
 }
 
