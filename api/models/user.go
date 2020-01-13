@@ -10,8 +10,9 @@ import (
 type (
 	User struct {
 		BaseModel
-		Name  string `json:"name"`
-		Email string `json:"email" valid:"email"`
+		Name     string `json:"name"`
+		Password string `json:"password"`
+		Email    string `json:"email" valid:"email"`
 	}
 
 	UserPaginationResponse struct {
