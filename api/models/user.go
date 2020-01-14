@@ -13,6 +13,7 @@ type (
 		Password string `json:"password"`
 		Email    string `json:"email" valid:"email"`
 		Roleid   int    `json:"roleid"`
+		Address  string `json:"address"`
 	}
 
 	UserPaginationResponse struct {

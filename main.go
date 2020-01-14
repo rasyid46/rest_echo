@@ -19,8 +19,8 @@ func main() {
 
 	// init database
 	gorm.Init()
-	autoDropTables()
-	autoCreateTables()
+	// autoDropTables()
+	// autoCreateTables()
 	autoMigrateTables()
 
 	e.Start(":8000")
@@ -34,14 +34,13 @@ func autoCreateTables() {
 
 	// seeder
 	if bootstrap.App.ENV == "dev" {
-		var users []models.User = []models.User{
-			models.User{Name: "iman", Email: "iman@sepulsa.com", Password: "123", Roleid: 1},
-			models.User{Name: "anton", Email: "anton@sepulsa.com", Password: "123", Roleid: 1},
-		}
+		// var users []models.User = []models.User{
+		// 	models.User{Name: "iman", Email: "iman@sepulsa.com", Password: "123", Roleid: 1, Address: "kopo"},
+		// }
 
-		for _, user := range users {
-			gorm.DBManager().Create(&user)
-		}
+		// for _, user := range users {
+		// 	gorm.DBManager().Create(&user)
+		// }
 	}
 }
 

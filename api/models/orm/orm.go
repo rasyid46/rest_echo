@@ -143,7 +143,7 @@ func FindAllWithPage(v interface{}, page int, rp int, filters interface{}) (resp
 	)
 
 	if rp <= 0 {
-		rp = 25
+		rp = 10
 	}
 
 	// tx := cgorm.DBManager().Begin()

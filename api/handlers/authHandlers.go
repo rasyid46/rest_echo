@@ -38,11 +38,13 @@ func Login(c echo.Context) error {
 			log.Println("Error Creating JWT token", err)
 			return c.String(http.StatusInternalServerError, "something went wrong")
 		}
-
-		return c.JSON(http.StatusOK, map[string]string{
+		res := map[string]string{
+			"code":    "200",
 			"message": "You were logged in!",
-			"token":   token,
-		})
+
+			"token": token,
+		}
+		return c.JSON(http.StatusOK, res)
 	}
 
 	return c.String(http.StatusUnauthorized, "Your username or password were wrong")
