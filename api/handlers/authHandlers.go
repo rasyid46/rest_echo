@@ -11,7 +11,7 @@ import (
 
 type JwtClaims struct {
 	Name   string `json:"name"`
-	Roleid string `json:"role_id"`
+	Roleid int    `json:"role_id"`
 	jwt.StandardClaims
 }
 
@@ -33,7 +33,7 @@ func Login(c echo.Context) error {
 		c.SetCookie(cookie)
 
 		// create jwt token
-		token, err := createJwtToken(username)
+		token, err := createJwtToken(username, 1)
 		if err != nil {
 			log.Println("Error Creating JWT token", err)
 			return c.String(http.StatusInternalServerError, "something went wrong")
@@ -48,9 +48,9 @@ func Login(c echo.Context) error {
 	return c.String(http.StatusUnauthorized, "Your username or password were wrong")
 }
 
-func createJwtToken(username string) (string, error) {
+func createJwtToken(username string, roleid int) (string, error) {
 	claims := JwtClaims{
-		username, "1",
+		username, roleid,
 		jwt.StandardClaims{
 			Id:        "main_user_id",
 			ExpiresAt: time.Now().Add(24 * time.Hour).Unix(),

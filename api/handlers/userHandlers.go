@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	"time"
 
 	"rest_echo/api/models"
 	"rest_echo/db/gorm"
@@ -191,7 +192,29 @@ func LoginUser(c echo.Context) error {
 		if match == false {
 			return echo.NewHTTPError(http.StatusBadRequest, "password salah")
 		}
-		return c.JSON(http.StatusCreated, match)
+		cookie := &http.Cookie{}
+
+		// this is the same
+		//cookie := new(http.Cookie)
+
+		cookie.Name = "sessionID"
+		cookie.Value = "some_string"
+		cookie.Expires = time.Now().Add(48 * time.Hour)
+
+		c.SetCookie(cookie)
+		// create jwt token
+		token, err := createJwtToken(user.Name, user.Roleid)
+
+		if err != nil {
+			log.Println("Error Creating JWT token", err)
+			return c.String(http.StatusInternalServerError, "something went wrong")
+		}
+
+		return c.JSON(http.StatusOK, map[string]string{
+			"message": "You were logged in!",
+			"token":   token,
+			"code":    "200",
+		})
 	} else {
 		return echo.NewHTTPError(http.StatusBadRequest, "email tidak terdaftar")
 	}
